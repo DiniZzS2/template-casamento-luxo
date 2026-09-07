@@ -135,3 +135,30 @@ setInterval(() => {
         document.getElementById("segundos").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
     }
 }, 1000);
+
+/* ==========================================
+   7. ALERTA ESTRATÉGICO (MODAL CUSTOMIZADO)
+========================================== */
+const portfolioButtons = document.querySelectorAll('.portfolio-alert');
+const modalOverlay = document.getElementById('portfolioModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+
+// Ao clicar nos botões, mostra o modal
+portfolioButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Impede o salto da página
+        modalOverlay.classList.add('active'); // Aciona a animação do CSS
+    });
+});
+
+// Fechar ao clicar no "X"
+closeModalBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+});
+
+// Fechar ao clicar fora do card (na área escura)
+modalOverlay.addEventListener('click', (event) => {
+    if (event.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+    }
+});
