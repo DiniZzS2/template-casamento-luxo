@@ -238,9 +238,27 @@ body {
     .eye-title { font-size: 3.5rem; }
     
     /* 4. A HISTÓRIA (FIM DA SOBREPOSIÇÃO) */
-    .story-horizontal { flex-direction: column; width: 100%; padding: 0 5%; gap: 60px; }
-    .h-panel { width: 100%; height: auto; flex-direction: column !important; text-align: center; gap: 30px; }
-    
+    /* 4. A HISTÓRIA (DE VOLTA À VIDA E SEM SOBREPOSIÇÃO) */
+    .story-inside-layer {
+        position: relative !important;
+        opacity: 1 !important; /* Força a história a aparecer */
+        transform: none !important; /* Tira o scale(0.8) que deixava ela pequena */
+        display: block !important;
+    }
+    .story-horizontal { 
+        display: flex !important;
+        flex-direction: column !important; 
+        width: 100% !important; 
+        padding: 0 !important; 
+        gap: 60px !important; 
+    }
+    .h-panel { 
+        width: 100%; 
+        height: auto; 
+        flex-direction: column !important; 
+        text-align: center; 
+        gap: 30px; 
+    }
     .h-text {
         position: relative;
         padding: 40px 20px;
