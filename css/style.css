@@ -80,10 +80,17 @@ body {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     /* Origem da transformação no centro para o zoom ser perfeito */
     transform-origin: 50% 50%;
+
+    will-change: transform, filter, opacity;
+    transform: translateZ(0); 
+    backface-visibility: hidden;
 }
 .eye-bg {
     position: absolute; inset: 0; background-size: cover; background-position: center;
-    /* O JS vai animar o transform: scale e o filter: blur disto */
+    
+    will-change: transform, filter;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 .eye-overlay {
     position: absolute; 
@@ -214,4 +221,54 @@ body {
     .action-line { width: 80%; height: 1px; }
     .cursor-dot, .cursor-follower { display: none; }
     body { cursor: auto; }
+
+    /* --- AJUSTES DO MOBILE PARA A HISTÓRIA E OS OLHOS --- */
+    .story-portal-section {
+        height: auto;
+        padding: 60px 5%;
+    }
+    .portal-sticky {
+        position: relative;
+        height: auto;
+        width: 100%;
+        overflow: visible;
+    }
+    /* A foto dos olhos vira um banner normal no celular */
+    .the-eye-layer {
+        position: relative;
+        height: 60vh;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 40px;
+        transform: none !important; /* Desativa qualquer resquício de JS */
+        filter: none !important;
+        opacity: 1 !important;
+    }
+    .eye-overlay {
+        bottom: 30px; /* Ajusta o texto pra caber certinho */
+    }
+    
+    /* A história aparece logo abaixo, empilhada */
+    .story-inside-layer {
+        position: relative;
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+    .story-horizontal {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        gap: 60px;
+    }
+    .h-panel {
+        width: 100%;
+        height: auto;
+        flex-direction: column !important;
+        text-align: center;
+        gap: 30px;
+    }
+    .h-image-wrap {
+        width: 100%;
+        height: 400px;
+    }
 }
