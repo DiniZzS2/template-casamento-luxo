@@ -272,12 +272,19 @@ body {
         padding: 0 !important; 
         gap: 60px !important; 
     }
+    
     .h-panel { 
         width: 100% !important; 
         height: auto !important; 
+        display: flex !important;
         flex-direction: column !important; 
         text-align: center; 
         gap: 30px; 
+    }
+    
+    
+    .h-panel:nth-child(even) {
+        flex-direction: column-reverse !important;
     }
     .h-text {
         position: relative;
