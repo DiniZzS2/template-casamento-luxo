@@ -1,0 +1,217 @@
+/* --- VARIÁVEIS DO ESTILO EDITORIAL DE LUXO --- */
+:root {
+    --bg-dark: #12080a;       /* Fundo quase preto (tom vinho escuro) */
+    --bg-light: #eaddd3;      /* Creme / Bege */
+    --bordo-accent: #5e1121;  /* Bordô de destaque */
+    --gold: #d4b58e;          /* Ouro envelhecido sofisticado */
+    --text-light: #f5f0eb;
+    
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    cursor: none; overflow-x: hidden;
+}
+
+/* --- CURSOR PERSONALIZADO --- */
+.cursor-dot {
+    width: 6px; height: 6px; background-color: var(--gold); border-radius: 50%;
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+}
+.cursor-follower {
+    width: 40px; height: 40px; border: 1px solid rgba(212, 181, 142, 0.4); border-radius: 50%;
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+.cursor-hover { width: 60px !important; height: 60px !important; background-color: rgba(212, 181, 142, 0.1); backdrop-filter: blur(2px); }
+
+/* --- MOLDURA GLASSMORPHISM FIXA --- */
+.glass-frame {
+    position: fixed; top: 2vw; left: 2vw; right: 2vw; bottom: 2vw;
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+    pointer-events: none; z-index: 9000; box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+}
+
+/* --- TIPOGRAFIA --- */
+.section-subtitle { font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 5px; color: var(--gold); display: block; margin-bottom: 20px; }
+.section-title { font-family: var(--font-serif); font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 30px; color: var(--text-light); }
+
+/* --- HERO SECTION --- */
+.hero { height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+.hero-image { position: absolute; inset: -5%; background-size: cover; background-position: center; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-dark) 0%, rgba(18, 8, 10, 0.4) 100%); }
+.hero-text-container { position: relative; z-index: 10; text-align: center; }
+.reveal-text { overflow: hidden; }
+.reveal-text span, .reveal-text p { display: inline-block; transform: translateY(100%); }
+.pre-title { font-size: 0.9rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.hero-title { font-family: var(--font-serif); font-size: 8rem; font-weight: 300; display: flex; align-items: center; justify-content: center; gap: 30px; line-height: 0.9; margin-bottom: 20px; }
+.ampersand { font-size: 6rem; font-style: italic; color: var(--gold); }
+.hero-date { font-family: var(--font-serif); font-size: 2rem; font-style: italic; color: rgba(255,255,255,0.7); }
+
+/* --- CONTAGEM REGRESSIVA MONUMENTAL --- */
+.countdown-luxury { padding: 80px 5% 150px; text-align: center; background: var(--bg-dark); position: relative; z-index: 2;}
+.timer-container { display: flex; justify-content: center; align-items: center; gap: 4vw; margin-top: 30px; }
+.time-block { display: flex; flex-direction: column; align-items: center; width: 140px; }
+.time-number { font-family: var(--font-serif); font-size: 7rem; font-weight: 300; color: var(--text-light); line-height: 1; }
+.time-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-top: 15px; }
+.time-separator { width: 1px; height: 100px; background: rgba(212, 181, 142, 0.2); }
+
+/* ========================================================
+   A JOGADA DE MESTRE: ZOOM NO OLHAR + HISTÓRIA HORIZONTAL 
+   ======================================================== */
+.story-portal-section {
+    position: relative;
+    /* Altura gerida pelo GSAP ScrollTrigger para acomodar a animação inteira */
+}
+.portal-sticky {
+    width: 100vw; height: 100vh; overflow: hidden; position: relative;
+    background: var(--bg-dark);
+}
+/* Camada 1: Os Olhos */
+.the-eye-layer {
+    position: absolute; inset: 0; z-index: 5;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    /* Origem da transformação no centro para o zoom ser perfeito */
+    transform-origin: 50% 50%;
+}
+.eye-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    /* O JS vai animar o transform: scale e o filter: blur disto */
+}
+.eye-overlay {
+    position: absolute; 
+    bottom: 60px; /* Joga o texto lá para baixo */
+    left: 50%; 
+    transform: translateX(-50%); /* Centraliza perfeitamente */
+    z-index: 2; 
+    text-align: center;
+    width: 100%;
+    
+    /* Removemos o background, o border e o blur */
+    /* Adicionamos uma sombra premium para o texto não sumir na foto */
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.eye-title { font-family: var(--font-serif); font-size: 5rem; color: var(--gold); line-height: 1; margin-bottom: 20px;}
+.eye-overlay p { letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; color: #ccc;}
+
+/* Camada 2: A História Interna (Fica "atrás" dos olhos) */
+.story-inside-layer {
+    position: absolute; inset: 0; z-index: 1;
+    display: flex; align-items: center;
+    /* Inicialmente invisível e pequeno, o GSAP vai revelar */
+    opacity: 0; transform: scale(0.8);
+}
+.story-horizontal {
+    display: flex; width: max-content; padding: 0 10vw; gap: 15vw;
+}
+.h-panel {
+    width: 80vw; height: 70vh; display: flex; align-items: center; gap: 80px;
+}
+.h-panel:nth-child(even) { flex-direction: row-reverse; } /* Intercala foto e texto */
+.h-text { flex: 1; }
+.h-year { font-family: var(--font-serif); font-size: 8rem; color: rgba(212, 181, 142, 0.1); position: absolute; transform: translateY(-50%); z-index: -1; }
+.h-text h2 { font-family: var(--font-serif); font-size: 4rem; color: var(--gold); margin-bottom: 20px;}
+.h-text p { font-size: 1.1rem; line-height: 1.8; color: #ccc; }
+.h-image-wrap { flex: 1; height: 100%; overflow: hidden; border-radius: 12px; }
+.h-img { width: 100%; height: 120%; background-size: cover; background-position: center; } /* Height 120% para parallax interno */
+
+/* --- DRESS CODE SPLIT SCREEN --- */
+.dress-code-split { display: flex; height: 100vh; width: 100%; position: relative; overflow: hidden; background: var(--bg-dark); }
+.split-side { flex: 1; position: relative; overflow: hidden; display: flex; align-items: center; padding: 0 10%; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.split-bg { position: absolute; inset: -10%; background-size: cover; background-position: center; transition: transform 1s, filter 1s; z-index: 1; filter: grayscale(40%) brightness(0.5); }
+.split-overlay { position: absolute; inset: 0; background: rgba(18, 8, 10, 0.8); z-index: 2; transition: background 0.8s; }
+.split-content { position: relative; z-index: 3; color: var(--text-light); opacity: 0.5; transition: opacity 0.6s, transform 0.6s; width: 100%; max-width: 400px; }
+.text-right { text-align: right; margin-left: auto; }
+
+.dress-code-split:hover .split-side { flex: 0.8; } 
+.dress-code-split .split-side:hover { flex: 1.2; } 
+.dress-code-split:hover .split-side:not(:hover) .split-overlay { background: rgba(0, 0, 0, 0.95); } 
+.split-side:hover .split-overlay { background: rgba(94, 17, 33, 0.3); } /* Tom bordô */
+.split-side:hover .split-bg { transform: scale(1.05); filter: grayscale(0%) brightness(0.9); }
+.split-side:hover .split-content { opacity: 1; transform: translateY(-10px); }
+
+.split-tag { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 15px; }
+.split-content h3 { font-family: var(--font-serif); font-size: 3.5rem; font-weight: 300; margin-bottom: 25px; line-height: 1; }
+.split-content p { font-size: 1rem; line-height: 1.8; margin-bottom: 20px; color: rgba(255,255,255,0.8); }
+.split-content small { font-size: 0.85rem; color: #ff9999; font-style: italic; }
+
+.split-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; background: var(--text-light); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; text-align: center; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.split-center span { font-size: 0.65rem; color: var(--bg-dark); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px;}
+.split-center strong { font-family: var(--font-serif); font-size: 1.5rem; color: var(--bordo-accent); font-weight: 600; line-height: 1;}
+.dress-code-split .elas:hover ~ .split-center { transform: translate(-15%, -50%); }
+.dress-code-split .eles:hover ~ .split-center { transform: translate(-85%, -50%); }
+
+/* --- MAPA E LOCALIZAÇÃO (DARK MODE STYLE) --- */
+.location-section {
+    position: relative; height: 90vh; display: flex; align-items: center;
+    padding: 0 10%; overflow: hidden; background: #000;
+}
+.map-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+}
+/* O CSS Filter que transforma o mapa normal num mapa Sombrio/Dourado Premium */
+.map-container iframe {
+    filter: invert(90%) hue-rotate(180deg) sepia(20%) contrast(1.1);
+    opacity: 0.6;
+}
+.location-card {
+    position: relative; z-index: 2; background: var(--bg-light); padding: 80px 60px;
+    border-radius: 12px; width: 500px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+.location-card .venue-address { color: var(--bg-dark); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; }
+
+/* --- BOTÕES LUXURY EDITORIAL --- */
+.btn-luxury {
+    display: inline-block; padding: 16px 40px; border: 1px solid var(--gold); color: var(--bg-dark);
+    background: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+    font-weight: 500; text-decoration: none; position: relative; overflow: hidden; transition: color 0.4s;
+    text-align: center; cursor: pointer;
+}
+.btn-luxury::before {
+    content: ''; position: absolute; inset: 0; background: var(--text-light);
+    transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1;
+}
+.btn-luxury:hover { color: var(--bg-dark); }
+.btn-luxury:hover::before { transform: scaleY(1); }
+
+.btn-luxury.outline { background: transparent; color: var(--gold); }
+.btn-luxury.outline::before { background: var(--gold); }
+.btn-luxury.outline:hover { color: var(--bg-dark); }
+.btn-luxury.dark { background: var(--bg-dark); color: var(--gold); border-color: var(--bg-dark); }
+
+/* --- FOOTER RSVP --- */
+.footer-action { padding: 150px 10%; background: var(--bg-dark); }
+.action-grid { display: flex; justify-content: space-between; align-items: center; }
+.action-card { flex: 1; text-align: center; padding: 0 40px; }
+.action-card .desc { color: rgba(255,255,255,0.6); margin-bottom: 40px; line-height: 1.6; font-size: 1.1rem;}
+.action-line { width: 1px; height: 180px; background: rgba(212, 181, 142, 0.2); }
+
+/* --- RESPONSIVIDADE BÁSICA --- */
+@media(max-width: 1024px) {
+    .hero-title { font-size: 5rem; flex-direction: column; gap: 0; }
+    .ampersand { font-size: 4rem; }
+    .timer-container { flex-wrap: wrap; gap: 30px; }
+    .time-block { width: 100px; }
+    .time-number { font-size: 4rem; }
+    
+    .h-panel { width: 90vw; flex-direction: column !important; text-align: center; height: auto; gap: 40px;}
+    .h-image-wrap { width: 100%; height: 300px; }
+    
+    .dress-code-split { flex-direction: column; height: auto; }
+    .split-side { height: 50vh; width: 100%; padding: 40px 5%; justify-content: center; text-align: center !important; }
+    .text-right { text-align: center; margin: 0 auto; }
+    .split-center { top: 50%; transform: translate(-50%, -50%) !important; width: 120px; height: 120px; }
+    
+    .location-card { width: 90%; margin: 0 auto; padding: 40px 20px; }
+    .action-grid { flex-direction: column; gap: 60px; }
+    .action-line { width: 80%; height: 1px; }
+    .cursor-dot, .cursor-follower { display: none; }
+    body { cursor: auto; }
+}
